@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+ROFI_CONFIG="$HOME/.config/rofi/config.rasi"
+
+# Display a menu using the existing Rofi configuration and theme
+menu() {
+    local prompt="$1"
+    shift
+
+    printf '%s\n' "$@" | rofi \
+        -config "$ROFI_CONFIG" \
+        -dmenu \
+        -i \
+        -p "$prompt" \
+        -theme-str 'element { padding: 3px; } element-text { font: "Iosevka Nerd Font 12"; horizontal-align: 0.0; vertical-align: 0.5; padding: 0px 0px 0px 0.5em; }'
+}
+
+# Main menu
+choice=$(menu "Power" "Logout" "Reboot" "Power off" "Cancel")
+
+case "$choice" in
+    "Logout")
+        confirm=$(menu "Confirm logout?" "Yes, logout" "Cancel")
+
+        if [[ "$confirm" == "Yes, logout" ]]; then
+            hyprctl dispatch 'hl.dsp.exit()'
+        fi
+        ;;
+
+    "Reboot")
+        confirm=$(menu "Confirm reboot?" "Yes, reboot" "Cancel")
+
+        if [[ "$confirm" == "Yes, reboot" ]]; then
+            systemctl reboot
+        fi
+        ;;
+
+    "Power off")
+        confirm=$(menu "Confirm power off?" "Yes, power off" "Cancel")
+
+        if [[ "$confirm" == "Yes, power off" ]]; then
+            systemctl poweroff
+        fi
+        ;;
+
+    "Cancel"|"")
+        exit 0
+        ;;
+esac
+

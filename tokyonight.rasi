@@ -1,0 +1,171 @@
+* {
+    bg:                         #24283b;
+    primary:                    #7aa2f7;
+    selected:                   #c0caf8;
+    selected-text:              #24283b;
+    prompt-bg:                  #444b6a;
+    border-blue:                #51afef;
+
+    background-color:           @bg;
+    text-color:                 @primary;
+    border-color:               @border-blue;
+
+    font:                       "Iosevka Nerd Font 11";
+    prompt-font:                "Iosevka Nerd Font Bold 11";
+
+    spacing:                    3px;
+}
+
+/* Main window */
+window {
+    width:                      650px;
+    border:                     2px;
+    border-color:               @border-blue;
+    padding:                    5px;
+    location:                   center;
+    anchor:                     center;
+}
+
+/* Main container */
+mainbox {
+    border:                     0px;
+    padding:                    0px;
+    background-color:           @bg;
+}
+
+/* Message */
+message {
+    border:                     0px;
+    padding:                    1px;
+    background-color:           @bg;
+}
+
+/* List */
+listview {
+    fixed-height:               true;
+    lines:                      8;
+    border:                     0px;
+    spacing:                    2px;
+    scrollbar:                  false;
+    padding:                    2px 0px 0px;
+    background-color:           @bg;
+}
+
+/* Entries */
+element {
+    border:                     0px;
+    padding:                    3px;
+    background-color:           @bg;
+    text-color:                 @primary;
+}
+
+/* Normal entries */
+element normal.normal {
+    background-color:           @bg;
+    text-color:                 @primary;
+}
+
+/* Alternating entries */
+element alternate.normal {
+    background-color:           @bg;
+    text-color:                 @primary;
+}
+
+/* Selected entry */
+element selected.normal {
+    background-color:           @selected;
+    text-color:                 @selected-text;
+}
+
+/* Active entry */
+element normal.active {
+    background-color:           @bg;
+    text-color:                 @primary;
+}
+
+/* Urgent entry */
+element normal.urgent {
+    background-color:           @bg;
+    text-color:                 @primary;
+}
+
+/* Selected active entry */
+element selected.active {
+    background-color:           @selected;
+    text-color:                 @selected-text;
+}
+
+/* Entry text */
+element-text {
+    font:                       "Iosevka Nerd Font 12";
+    background-color:           inherit;
+    text-color:                 inherit;
+    horizontal-align:           0.0;
+    vertical-align:             0.5;
+    padding:                    0px 0px 0px 0px;
+}
+
+/* Application icons */
+element-icon {
+    background-color:           inherit;
+    size:                       1.6em;
+}
+
+/* Input bar */
+inputbar {
+    spacing:                    0px;
+    padding:                    1px;
+    background-color:           @bg;
+    text-color:                 @primary;
+}
+
+/* Input */
+entry {
+    padding:                    4px;
+    expand:                     false;
+    width:                      10em;
+    background-color:           @bg;
+    text-color:                 @primary;
+    blink:                      false;
+    cursor-width:               8px;
+    cursor-color:               @primary;
+}
+
+/* Prompt */
+prompt {
+    padding:                    4px 10px;
+    margin:                     0px 4px 0px 0px;
+    background-color:           @prompt-bg;
+    text-color:                 @selected;
+    font:                       @prompt-font;
+}
+
+/* Case indicator */
+case-indicator {
+    background-color:           @bg;
+    text-color:                 @primary;
+}
+
+/* Scrollbar */
+scrollbar {
+    enabled:                    false;
+    background-color:           @bg;
+}
+
+/* Sidebar */
+sidebar {
+    background-color:           @bg;
+    border:                     0px;
+}
+
+/* Buttons */
+button {
+    background-color:           @bg;
+    text-color:                 @primary;
+    border:                     0px;
+}
+
+button selected.normal {
+    background-color:           @selected;
+    text-color:                 @selected-text;
+}

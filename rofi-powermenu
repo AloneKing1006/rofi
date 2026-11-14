@@ -7,16 +7,11 @@ menu() {
     local prompt="$1"
     shift
 
-    printf '%s\n' "$@" | rofi \
-        -config "$ROFI_CONFIG" \
-        -dmenu \
-        -i \
-        -p "$prompt" \
-        -theme-str 'element { padding: 3px; } element-text { font: "Iosevka Nerd Font 12"; horizontal-align: 0.0; vertical-align: 0.5; padding: 0px 0px 0px 0.5em; }'
+    printf '%s\n' "$@" | rofi -config "$ROFI_CONFIG" -dmenu -i -l 4 -p "$prompt" -theme-str 'element { padding: 3px; } element-text { font: "Iosevka Nerd Font 12"; horizontal-align: 0.0; vertical-align: 0.5; padding: 0px 0px 0px 0.5em; }'
 }
 
 # Main menu
-choice=$(menu "Power" "Logout" "Reboot" "Power off" "Cancel")
+choice=$(menu "Power" "Logout" "Reboot" "Poweroff" "Cancel")
 
 case "$choice" in
     "Logout")
@@ -36,9 +31,9 @@ case "$choice" in
         ;;
 
     "Power off")
-        confirm=$(menu "Confirm power off?" "Yes, power off" "Cancel")
+        confirm=$(menu "Confirm poweroff?" "Yes, power off" "Cancel")
 
-        if [[ "$confirm" == "Yes, power off" ]]; then
+        if [[ "$confirm" == "Yes, poweroff" ]]; then
             systemctl poweroff
         fi
         ;;

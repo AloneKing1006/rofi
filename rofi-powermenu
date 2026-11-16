@@ -2,44 +2,61 @@
 
 ROFI_CONFIG="$HOME/.config/rofi/config.rasi"
 
-# Display a menu using the existing Rofi configuration and theme
+# Display menu
 menu() {
     local prompt="$1"
     shift
 
-    printf '%s\n' "$@" | rofi -config "$ROFI_CONFIG" -dmenu -i -l 4 -p "$prompt" -theme-str 'element { padding: 3px; } element-text { font: "JetBrainsMono Nerd Font 11"; horizontal-align: 0.0; vertical-align: 0.5; padding: 0px 0px 0px 1.5em; }'
+    printf '%s\n' "$@" | rofi \
+        -config "$ROFI_CONFIG" \
+        -dmenu \
+        -i \
+        -no-custom \
+        -l 4 \
+        -p "$prompt" \
+        -theme-str '
+            element {
+                padding: 3px;
+            }
+
+            element-text {
+                font: "JetBrainsMono Nerd Font 11";
+                horizontal-align: 0.0;
+                vertical-align: 0.5;
+                padding: 0px 0px 0px 1.5em;
+            }
+        '
 }
 
-# Main menu
-choice=$(menu "Power" "Logout" "Reboot" "Poweroff" "Cancel")
+# Main power menu
+choice=$(menu "Power" \
+    "󰍃  Logout" \
+    "󰑓  Reboot" \
+    "󰐥  Poweroff" \
+    "󰅖  Cancel")
+
+# Handle cancellation
+[[ -z "$choice" ]] && exit 0
 
 case "$choice" in
-    "Logout")
-        confirm=$(menu "Confirm logout?" "Yes, logout" "Cancel")
-
-        if [[ "$confirm" == "Yes, logout" ]]; then
-            hyprctl dispatch 'hl.dsp.exit()'
-        fi
+    "󰍃  Logout")
+        hyprctl dispatch 'hl.dsp.exit()'
         ;;
 
-    "Reboot")
-        confirm=$(menu "Confirm reboot?" "Yes, reboot" "Cancel")
-
-        if [[ "$confirm" == "Yes, reboot" ]]; then
-            systemctl reboot
-        fi
+    "󰑓  Reboot")
+        systemctl reboot
         ;;
 
-    "Poweroff")
-        confirm=$(menu "Confirm poweroff?" "Yes, poweroff" "Cancel")
-
-        if [[ "$confirm" == "Yes, poweroff" ]]; then
-            systemctl poweroff
-        fi
+    "󰐥  Poweroff")
+        systemctl poweroff
         ;;
 
-    "Cancel"|"")
+    "󰅖  Cancel")
         exit 0
+        ;;
+
+    *)
+        exit 1
         ;;
 esac
 

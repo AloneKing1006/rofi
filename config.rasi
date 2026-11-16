@@ -1,29 +1,51 @@
+
 configuration {
-    modi: ["drun", "window", "run"];
+    // Available modes
+    modes: [drun, window, run];
+
+    // General settings
     icon-theme: "Papirus-Dark";
     show-icons: true;
     terminal: "kitty";
-    drun-display-format: "{icon} {name}";
+
     location: 0;
     disable-history: false;
     sidebar-mode: false;
-    display-drun: " ";
-    display-run: " ";
-    display-window: " ";
-    
-    //adding vim keybindings
+
+    // Drun settings
+    drun-display-format: "{icon} {name}";
+
+    // Mode display names
+    drun {
+        display-name: " ";
+    }
+
+    run {
+        display-name: " ";
+    }
+
+    window {
+        display-name: " ";
+    }
+
+    // Vim-style navigation
     kb-row-up: "Up,Control+k";
+    kb-row-down: "Down,Control+j";
     kb-row-left: "Left,Control+h";
     kb-row-right: "Right,Control+l";
-    kb-row-down: "Down,Control+j";
 
+    // Accept entry
     kb-accept-entry: "Control+z,Control+y,Return,KP_Enter";
 
-    //fixing up
+    // Input editing
     kb-remove-to-eol: "";
     kb-move-char-back: "Control+b";
-    kb-remove-char-back: "BackSpace";
     kb-move-char-forward: "Control+f";
+    kb-remove-char-back: "BackSpace";
+
+    // Mode completion
     kb-mode-complete: "Control+o";
 }
+
 @theme "tokyonight.rasi"
+

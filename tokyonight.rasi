@@ -10,8 +10,8 @@
     text-color:                 @primary;
     border-color:               @border-blue;
 
-    font:                       "Iosevka Nerd Font 11";
-    prompt-font:                "Iosevka Nerd Font Bold 11";
+    font:                       "JetBrainsMono Nerd Font 11";
+    prompt-font:                "JetBrainsMono Nerd Font Bold 11";
 
     spacing:                    3px;
 }
@@ -97,7 +97,7 @@ element selected.active {
 
 /* Entry text */
 element-text {
-    font:                       "Iosevka Nerd Font 12";
+    font:                       "JetBrainsMono Nerd Font 11";
     background-color:           inherit;
     text-color:                 inherit;
     horizontal-align:           0.0;
